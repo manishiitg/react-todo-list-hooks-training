@@ -1,12 +1,8 @@
 import React from 'react';
 
-import useTodoList from "./../hooks/index"
-
 function Nav(props) {
-    let [todoList, setTodo] = useTodoList(["todo 1", "todo 2", "todo 3"])
-
     const addTodo = () => {
-        setTodo([...todoList, "todo " + (todoList.length + 1)])
+        props.setTodo([...props.todoList, "todo " + (props.todoList.length + 1)])
     }
 
     return (
