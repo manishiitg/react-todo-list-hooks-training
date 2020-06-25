@@ -2,7 +2,7 @@ import React from 'react';
 
 function Nav(props) {
     const addTodo = () => {
-        props.setDisplayForm(true)
+        props.toggleDisplayForm()
     }
 
     return (

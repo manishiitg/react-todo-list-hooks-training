@@ -7,25 +7,26 @@ import List from "./components/list"
 import AddTodoForm from "./components/addtodoform"
 
 import useTodoList from "./hooks/index"
+import useDisplayForm from "./hooks/displayform"
 
 function App() {
 
   let [todoList, setTodo] = useTodoList(["todo 1", "todo 2", "todo 3"])
 
-  const [displayForm, setDisplayForm] = useState(false)
+  const [displayForm, toggleDisplayForm] = useDisplayForm(false)
 
   let addform = null
   let list = <List todoList={todoList} setTodo={setTodo} />
 
   if(displayForm){
-    addform = <AddTodoForm setDisplayForm={setDisplayForm} />
+    addform = <AddTodoForm toggleDisplayForm={toggleDisplayForm} />
     list = null
   }
 
   return (
     <div className="App">
 
-      <Nav setDisplayForm={setDisplayForm}  />
+      <Nav toggleDisplayForm={toggleDisplayForm}  />
       {addform}
       {list}
       
