@@ -6,14 +6,14 @@ import {useState} from 'react'
 function useAddTodoForm() {
     const [formState, updateFormState] = useState({
         "text": "",
-        "due": false
+        "duedate": false
     });
 
     const updateTodoText = (event) => {
         updateFormState({ ...formState, text: event.target.value })
     }
     const updateDate = (event) => {
-        updateFormState({ ...formState, due: event.target.value })
+        updateFormState({ ...formState, duedate: event.target.value })
     }
 
     return { formState, updateTodoText, updateDate }

@@ -17,7 +17,8 @@ function List(props) {
                     {
                         props.todoList.map((item, idx) => {
                             return <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
-                                {item}
+                                {item.text}
+                                <small>{item.duedate.toLocaleString()}</small>
                                 <span className="badge bg-danger rounded-pill">&times;</span>
                             </li>
                         })

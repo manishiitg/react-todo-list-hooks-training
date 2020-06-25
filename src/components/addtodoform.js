@@ -6,12 +6,11 @@ import useAddTodoForm from "../hooks/form"
 function AddTodoForm(props) {
 
     const { formState, updateTodoText, updateDate } = useAddTodoForm()
-    
+
     const submitForm = (event) => {
         event.preventDefault()
-        // add further logic here
-
-        
+        props.addTodo(formState.text, formState.duedate)
+        props.toggleDisplayForm()
     }
 
     return (

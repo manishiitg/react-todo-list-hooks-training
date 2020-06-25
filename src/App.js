@@ -6,20 +6,20 @@ import Nav from "./components/nav"
 import List from "./components/list"
 import AddTodoForm from "./components/addtodoform"
 
-import useTodoList from "./hooks/index"
+import useTodoList from "./hooks/todo"
 import useDisplayForm from "./hooks/displayform"
 
 function App() {
 
-  let [todoList, setTodo] = useTodoList(["todo 1", "todo 2", "todo 3"])
+  let [todoList, addTodo] = useTodoList(["todo 1", "todo 2", "todo 3"])
 
   const [displayForm, toggleDisplayForm] = useDisplayForm(false)
 
   let addform = null
-  let list = <List todoList={todoList} setTodo={setTodo} />
+  let list = <List todoList={todoList} />
 
   if(displayForm){
-    addform = <AddTodoForm toggleDisplayForm={toggleDisplayForm} />
+    addform = <AddTodoForm addTodo={addTodo} toggleDisplayForm={toggleDisplayForm} />
     list = null
   }
 
