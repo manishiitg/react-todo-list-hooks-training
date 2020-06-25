@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Nav() {
+function Nav(props) {
     return (
         <nav className="navbar navbar-light bg-light">
             <div className="container-fluid">
-                <a className="navbar-brand">TodoList</a>
+                <b className="navbar-brand">TodoList</b>
 
                 <ul className="nav">
                     <li className="nav-item">

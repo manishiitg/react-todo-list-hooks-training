@@ -1,28 +1,21 @@
 // src/components/list.js
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-function List() {
-    const [todoList, setTodo] = useState(["todo 1", "todo 2", "todo 3"])
+function List(props) {
+
 
     const addTodo = () => {
-        setTodo([...todoList, "todo " + (todoList.length + 1)])
+        props.setTodo([...props.todoList, "todo " + (props.todoList.length + 1)])
     }
 
-    useEffect( () => {
-        document.title = "New Todo Added!"
-        window.localStorage.setItem("todoList", todoList)
 
-        return () => {
-            window.localStorage.clear()
-        }
-    })
     return (
         <div className="container-fluid">
             <div className="row">
                 <ul className="list-group">
                     {
-                        todoList.map((item, idx) => {
+                        props.todoList.map((item, idx) => {
                             return <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
                                 {item}
                                 <span className="badge bg-danger rounded-pill">&times;</span>
