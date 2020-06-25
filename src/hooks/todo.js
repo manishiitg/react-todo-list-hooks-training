@@ -2,35 +2,68 @@ import { useState, useEffect } from 'react';
 
 const useTodoList = (initState) => {
 
-    const [todoList, setTodo] = useState((initState))
+
+    let localState = window.localStorage.getItem("todoList", false)
+    if (localState) {
+        localState = JSON.parse(localState)
+        initState = localState
+    }
+    const [todoList, setTodo] = useState(initState)
 
 
 
     useEffect(() => {
 
         document.title = "New Todo Added!"
-        window.localStorage.setItem("todoList", todoList)
+        window.localStorage.setItem("todoList", JSON.stringify(todoList))
 
-        return () => {
-            window.localStorage.clear()
-        }
+        // not needed. 
+        // lets not clear the todo from local storage for now
+        // return () => {
+        //     window.localStorage.clear()
+        // }
     })
 
     const addTodo = (text, duedate) => {
-        setTodo([...todoList, { "text": text, "duedate": duedate }])
+        setTodo([...todoList, { "text": text, "duedate": duedate, "completed": false }])
+    }
+    const markTodo = (idx) => {
+        let todos = getTodoWithDefaultDate(todoList)
+        todos = todos.map((ele, i) => {
+            if (i === idx) {
+                ele.completed = !ele.completed
+            }
+            return ele
+        })
+        setTodo(todos)
+    }
+
+    const deleteTodo = (idx) => {
+        let todos = getTodoWithDefaultDate(todoList)
+        todos = todos.filter((ele, i) => {
+            console.log(i, "xxx" ,idx)
+            if (idx === i) {
+                return false
+            } else {
+                return true
+            }
+        })
+        setTodo(todos)
     }
 
     const getTodoWithDefaultDate = (initState) => {
         //this isn't needed as just. 
         // this is just to demonstrate we can manupulate the inital state as well
         if (initState) {
+
             return initState.map((ele) => {
                 if (typeof (ele) == "object") {
                     return ele
                 } else {
                     return {
                         "text": ele,
-                        "duedate": new Date()
+                        "duedate": new Date(),
+                        "completed": false
                     }
                 }
             })
@@ -40,7 +73,7 @@ const useTodoList = (initState) => {
 
     }
 
-    return [getTodoWithDefaultDate(todoList), addTodo]
+    return [getTodoWithDefaultDate(todoList), addTodo, markTodo, deleteTodo]
 
 }
 

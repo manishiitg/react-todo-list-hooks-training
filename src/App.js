@@ -11,12 +11,12 @@ import useDisplayForm from "./hooks/displayform"
 
 function App() {
 
-  let [todoList, addTodo] = useTodoList(["todo 1", "todo 2", "todo 3"])
+  let [todoList, addTodo, markTodo, deleteTodo] = useTodoList(["todo 1", "todo 2", "todo 3"])
 
   const [displayForm, toggleDisplayForm] = useDisplayForm(false)
 
   let addform = null
-  let list = <List todoList={todoList} />
+  let list = <List todoList={todoList} markTodo={markTodo} deleteTodo={deleteTodo} />
 
   if(displayForm){
     addform = <AddTodoForm addTodo={addTodo} toggleDisplayForm={toggleDisplayForm} />

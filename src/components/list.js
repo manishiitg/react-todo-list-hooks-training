@@ -4,12 +4,7 @@ import React from 'react';
 
 
 function List(props) {
-    
-    const addTodo = () => {
-        props.setTodo([...props.todoList, "todo " + (props.todoList.length + 1)])
-    }
 
-    
     return (
         <div className="container-fluid">
             <div className="row">
@@ -19,7 +14,12 @@ function List(props) {
                             return <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
                                 {item.text}
                                 <small>{item.duedate.toLocaleString()}</small>
-                                <span className="badge bg-danger rounded-pill">&times;</span>
+                                <span onClick={ () => props.deleteTodo(idx)} className="badge bg-danger rounded-pill">&times;</span>
+                                <span>
+                                    <div className="form-check form-switch">
+                                        <input checked={item.completed} onChange={() => props.markTodo(idx)} className="form-check-input" type="checkbox" />
+                                    </div>
+                                </span>
                             </li>
                         })
                     }
