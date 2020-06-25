@@ -14,12 +14,21 @@ function App() {
 
   const [displayForm, setDisplayForm] = useState(false)
 
+  let addform = null
+  let list = <List todoList={todoList} setTodo={setTodo} />
+
+  if(displayForm){
+    addform = <AddTodoForm setDisplayForm={setDisplayForm} />
+    list = null
+  }
+
   return (
     <div className="App">
 
-      <Nav todoList={todoList} setTodo={setTodo}  />
-      <AddTodoForm displayForm={displayForm} setDisplayForm={setDisplayForm} />
-      <List todoList={todoList} setTodo={setTodo} />
+      <Nav setDisplayForm={setDisplayForm}  />
+      {addform}
+      {list}
+      
 
     </div>
   );

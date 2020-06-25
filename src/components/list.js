@@ -22,11 +22,6 @@ function List(props) {
                             </li>
                         })
                     }
-
-                    <li className="list-group-item d-flex justify-content-between align-items-center">
-                        <button className="btn btn-primary" onClick={addTodo}>Add Random Test Todo</button>
-                    </li>
-
                 </ul>
             </div>
         </div>

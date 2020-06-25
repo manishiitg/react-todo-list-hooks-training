@@ -2,7 +2,7 @@ import React from 'react';
 
 function Nav(props) {
     const addTodo = () => {
-        props.setTodo([...props.todoList, "todo " + (props.todoList.length + 1)])
+        props.setDisplayForm(true)
     }
 
     return (
