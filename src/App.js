@@ -1,6 +1,6 @@
 // src/App.js
 
-import React , {useState} from 'react';
+import React from 'react';
 
 import Nav from "./components/nav"
 import List from "./components/list"
