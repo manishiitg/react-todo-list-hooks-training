@@ -1,12 +1,13 @@
 // src/components/list.js
 
 import React from 'react';
+import useTodoList from "./../hooks/index"
 
 function List(props) {
-
+    let [todoList, setTodo] = useTodoList(["todo 1", "todo 2", "todo 3"])
 
     const addTodo = () => {
-        props.setTodo([...props.todoList, "todo " + (props.todoList.length + 1)])
+        setTodo([...todoList, "todo " + (todoList.length + 1)])
     }
 
 
@@ -15,7 +16,7 @@ function List(props) {
             <div className="row">
                 <ul className="list-group">
                     {
-                        props.todoList.map((item, idx) => {
+                        todoList.map((item, idx) => {
                             return <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
                                 {item}
                                 <span className="badge bg-danger rounded-pill">&times;</span>
